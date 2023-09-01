@@ -17,7 +17,7 @@
         <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
             target="_blank">
             <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">Hai, {{ auth()->user()->nama_depan }}</span>
+            <span class="ms-1 font-weight-bold">Hai, {{ auth()->user()->name }}</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -32,22 +32,13 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item {{ $route == 'user.index' ? 'active' : '' }}">
-                <a class="nav-link " href="{{ route('user.index') }}">
+            <li class="nav-item {{ $route == 'product.index' ? 'active' : '' }}">
+                <a class="nav-link " href="{{ route('product.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-box-2 text-warning text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Product</span>
-                </a>
-            </li>
-            <li class="nav-item {{ $route == 'cuti.index' ? 'active' : '' }}">
-                <a class="nav-link " href="{{ route('cuti.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Cuti</span>
                 </a>
             </li>
             {{-- <li class="nav-item mt-3">

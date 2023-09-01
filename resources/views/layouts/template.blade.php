@@ -34,11 +34,6 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}"rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-
 </head>
 <style>
     th {
@@ -63,6 +58,22 @@
 
     .breadcrumb-item {
         font-size: 12px;
+    }
+
+    table.dataTable.table-striped tr.dtrg-level-0 td {
+        background-color: #e0e0e0 !important;
+    }
+
+    table.dataTable.table-striped tr.dtrg-level-1 td {
+        background-color: #f0f0f0 !important;
+    }
+
+    table.dataTable.table-striped tr.odd {
+        background-color: #f9f9f9 !important;
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd) {
+        --bs-table-accent-bg: none !important;
     }
 </style>
 
@@ -97,6 +108,10 @@
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('script')
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");

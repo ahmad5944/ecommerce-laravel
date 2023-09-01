@@ -6,13 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use App\Helpers\AuditTrail;
-use App\Helpers\GetIp;
-use App\Helpers\LogActivity;
 use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\Crypt;
 class UserController extends Controller
 {
     public static $pageTitle = 'User';
@@ -85,6 +79,15 @@ class UserController extends Controller
 
         $this->validate($request, $rules, $custom_messages);
 
+        if ($request->hasFile('image')) {
+            $path = 'public/images/users';
+
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $request->file('image')->storeAs($path, $image_name);
+
+            $req['image'] = '/users/' . $image_name;
+        }
         $req['password'] = Hash::make($req['password']);
         $user = User::create($req);
 
@@ -109,7 +112,7 @@ class UserController extends Controller
 
     public function edit(Request  $request, $id)
     {
-        $roles = Role::pluck('name', 'id')->all();
+        $roles = Role::all();
         $data = User::find($id);
 
         $pageTitle = self::$pageTitle;
@@ -127,15 +130,16 @@ class UserController extends Controller
         $req = $request->all();
 
         $rules = [
-            'nama_depan'        => 'required',
-            'nama_belakang'    => 'required',
+            'name'              => 'required',
+            'no_telp'           => 'required|numeric',
             'email'             => 'required|email',
             'password'          => 'nullable|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'
         ];
 
         $custom_messages = [
-            'nama_depan.required'           => 'Nama depan tidak boleh kosong !',
-            'nama_belakang.required'       => 'Nama belakang tidak boleh kosong !',
+            'name.required'                 => 'Nama tidak boleh kosong !',
+            'no_telp.required'              => 'No Telp tidak boleh kosong !',
+            'no_telp.numeric'               => 'No Telp harus berisikan angka !',
             'email.required'                => 'Email tidak boleh kosong !',
             'email.email'                   => 'Format email salah !',
             'password.regex'                => 'Password harus mengandung karakter, angka dan huruf besar & kecil !',
@@ -148,7 +152,20 @@ class UserController extends Controller
         } else {
             unset($req['password']);
         }
-        
+
+        if (!empty($req['image'])) {
+            if ($request->hasFile('image')) {
+                $path = 'public/images/users';
+
+                $image = $request->file('image');
+                $image_name = $image->getClientOriginalName();
+                $request->file('image')->storeAs($path, $image_name);
+
+                $req['image'] = '/users/' . $image_name;
+            }
+        } else {
+            unset($req['image']);
+        }
         $user->update($req);
 
         Alert::success('Berhasil', 'User Berhasil diUpdate');
@@ -160,7 +177,7 @@ class UserController extends Controller
         $data = User::find($id);
         User::find($id)->delete();
 
-        return redirect()->route(self::$routePath . '.index')
-            ->with('success', 'User Berhasil dihapus');
+        Alert::success('Berhasil', 'Data Berhasil diHapus');
+        return redirect()->route(self::$routePath . '.index');
     }
 }

@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProdcutController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Front\FrontProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\TestController;
@@ -24,15 +25,15 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index']);
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/', [FrontProductController::class, 'index'])->name('front.product');
+Route::get('/admin', [AuthController::class, 'login'])->name('login');
 Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('permission', PermissionController::class);
-    Route::resource('product', ProdcutController::class);
+    Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);
     Route::resource('cuti', CutiController::class);
     Route::resource('role', RoleController::class);

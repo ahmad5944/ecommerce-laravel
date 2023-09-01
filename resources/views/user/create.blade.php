@@ -52,11 +52,19 @@
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Foto</label>
+                                    <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                        name="image">
+                                    @error('image')
+                                        <small class="text-danger"><b>{{ $message }}</b></small>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
                                     <label class="form-label">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
                                         placeholder="test@gmail.com" name="email" value="{{ Request::old('email') }}">
                                     @error('email')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
@@ -86,9 +94,9 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <div class="col-12 d-flex justify-content-end">
+                        <div class="col-12">
                             <button type="submit"
-                                class="btn btn-dark me-1 waves-effect waves-float waves-light btn-sm font-small-2">Submit</button>
+                                class="btn btn-primary me-1 waves-effect waves-float waves-light btn-sm font-small-2">Submit</button>
                         </div>
                     </div>
                 </form>
