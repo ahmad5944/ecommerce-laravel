@@ -63,14 +63,19 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('front.login') }}">Login</a></li>
+                            @if (auth()->user() == null)
+                                <li class="nav-item"><a class="nav-link" href="{{ route('front.login') }}">Login</a>
+                                </li>
+                            @else
+                                <li class="nav-item"><a class="nav-link text-warning" href="{{ route('front.user.edit', auth()->user()->id) }}"><i class="fa fa-user me-sm-1"></i> Hai, {{ auth()->user()->name }}</a>
+                                </li>
+                            @endif
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a>
                             </li>
                             <li class="nav-item">
-                                <button class="search"><span class="lnr lnr-magnifier"
-                                        id="search"></span></button>
+                                <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
                             </li>
                         </ul>
                     </div>
@@ -88,7 +93,7 @@
         </div> --}}
     </header>
     <!-- End Header Area -->
-    
+
     <!-- start product Area -->
     <section class="owl-carousel active-product-area section_gap">
         <!-- single product slide -->

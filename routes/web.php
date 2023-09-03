@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
+use App\Http\Controllers\Front\Auth\FrontAuthController;
 use App\Http\Controllers\Front\FrontProductController;
 use App\Http\Controllers\Front\FrontLoginController;
+use App\Http\Controllers\Front\FrontUserController;
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DashboardController;
@@ -26,7 +28,7 @@ use App\Http\Controllers\RoleController;
 
 Route::get('/', [FrontProductController::class, 'index'])->name('front.product');
 Route::get('/user-login', [FrontLoginController::class, 'index'])->name('front.login');
-Route::post('user-postLogin', [AuthController::class, 'userPostLogin'])->name('front.postLogin');
+Route::post('user-postLogin', [FrontAuthController::class, 'userPostLogin'])->name('front.postLogin');
 Route::get('/user-register', [FrontLoginController::class, 'index'])->name('front.register');
 
 Route::get('/admin', [AuthController::class, 'login'])->name('login');
@@ -41,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('cuti', CutiController::class);
     Route::resource('role', RoleController::class);
     
-    Route::get('/pdf', [TestController::class, 'index']);
-    Route::post('/convert-pdf-to-html', [TestController::class, 'convertToHtml']);
+    // Frontend
+    Route::get('/produk', [FrontProductController::class, 'index'])->name('front.index');
+    Route::get('/front-user/{id}', [FrontUserController::class, 'edit'])->name('front.user.edit');
+    Route::patch('/front-user/update/{id}', [FrontUserController::class, 'update'])->name('front.user.update');
 });

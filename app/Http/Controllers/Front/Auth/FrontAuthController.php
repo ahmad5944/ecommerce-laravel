@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Front\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Helpers\AuditTrail;
 use Illuminate\Http\Request\hasRole;
 
-class AuthController extends Controller
+class FrontAuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,22 +18,17 @@ class AuthController extends Controller
      */
     public function login()
     {
-        return view('auth.login');
+        return redirect()->route('front.product');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function postLogin(Request $request)
+    public function userPostLogin(Request $request)
     {
         if(Auth::attempt($request->only('email', 'password'))){
+            $request->session()->regenerate();
 
-            return redirect()->route('dashboard');
+            return redirect()->route('front.product');
         }
-        return redirect()->route('login')->withErrors([
-            'username' => 'Password atau Username anda salah!'
+        return redirect('/admin')->withErrors([
+            'username' => 'Password atau Username anda salah!',
         ]);
     }
 
