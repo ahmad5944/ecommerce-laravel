@@ -24,7 +24,6 @@
                             <tr>
                                 <th width="1%">No</th>
                                 <th>Name</th>
-                                <th>Description</th>
                                 <th width="1%" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -33,7 +32,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->name }}</td>
-                                    <td>{{ $data->description }}</td>
                                     <td class="text-center">
                                         <div class="dropdown">
                                             <span class="" data-bs-toggle="dropdown">

@@ -23,10 +23,6 @@
                                     <input type="text" class="form-control" placeholder="user-list" name="name">
                                     <small class="text-danger">(Format Ada "list/create/edit/delete/show")</small>
                                 </div>
-                                <div class="mb-1">
-                                    <label class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" rows="3" placeholder="..." name="description"></textarea>
-                                </div>
                             </div>
                         </div>
                     </div>

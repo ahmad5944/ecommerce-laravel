@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,11 +20,11 @@ class UserController extends Controller
 
     function __construct()
     {
-        // $this->middleware('permission:user-list', ['only' => ['index']]);
-        // $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        // $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
-        // $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-        // $this->middleware('permission:user-show', ['only' => ['show']]);
+        $this->middleware('permission:user-list', ['only' => ['index']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-show', ['only' => ['show']]);
 
         self::$pageBreadcrumbs[] = [
             'page' => '/' . self::$routePath,
@@ -90,6 +91,7 @@ class UserController extends Controller
         }
         $req['password'] = Hash::make($req['password']);
         $user = User::create($req);
+        $user->assignRole($req['role']);
 
         Alert::success('Berhasil', 'Data Berhasil diTambahkan');
         return redirect()->route(self::$routePath . '.index');
@@ -145,6 +147,7 @@ class UserController extends Controller
             'password.regex'                => 'Password harus mengandung karakter, angka dan huruf besar & kecil !',
         ];
 
+        $roles = Role::pluck('id', 'name')->all();
         $this->validate($request, $rules, $custom_messages);
 
         if (!empty($req['password'])) {
@@ -153,6 +156,7 @@ class UserController extends Controller
             unset($req['password']);
         }
 
+        $req['role_id'] = $roles[$req['role']];
         if (!empty($req['image'])) {
             if ($request->hasFile('image')) {
                 $path = 'public/images/users';
@@ -167,6 +171,7 @@ class UserController extends Controller
             unset($req['image']);
         }
         $user->update($req);
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
 
         Alert::success('Berhasil', 'User Berhasil diUpdate');
         return redirect()->route(self::$routePath . '.index');

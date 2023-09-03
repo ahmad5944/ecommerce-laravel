@@ -1,19 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+
+use App\Http\Controllers\Front\FrontProductController;
+use App\Http\Controllers\Front\FrontLoginController;
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Front\FrontProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\RoleController;
-
-
-use App\Http\Controllers\Auth\AuthController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +25,10 @@ use App\Http\Controllers\Auth\AuthController;
 */
 
 Route::get('/', [FrontProductController::class, 'index'])->name('front.product');
+Route::get('/user-login', [FrontLoginController::class, 'index'])->name('front.login');
+Route::post('user-postLogin', [AuthController::class, 'userPostLogin'])->name('front.postLogin');
+Route::get('/user-register', [FrontLoginController::class, 'index'])->name('front.register');
+
 Route::get('/admin', [AuthController::class, 'login'])->name('login');
 Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

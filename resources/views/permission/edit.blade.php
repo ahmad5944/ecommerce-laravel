@@ -26,10 +26,6 @@
                                     <small class="text-danger">(Format Ada
                                         "list/create/edit/delete/show")</small>
                                 </div>
-                                <div class="mb-1">
-                                    <label class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" rows="5" placeholder="..." name="description">{{ $data->description }}</textarea>
-                                </div>
                             </div>
                         </div>
                     </div>

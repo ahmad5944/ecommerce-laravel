@@ -7,8 +7,6 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 use Illuminate\Support\Facades\DB;
-use App\Helpers\AuditTrail;
-use App\Helpers\LogActivity;
 
 class RoleController extends Controller
 {
@@ -30,10 +28,10 @@ class RoleController extends Controller
         // $this->middleware('permission:role-delete', ['only' => ['destroy']]);
         // $this->middleware('permission:role-show', ['only' => ['show']]);
 
-        // self::$pageBreadcrumbs[] = [
-        //     'page' => '/'.self::$routePath,
-        //     'title' => 'List '.self::$pageTitle,
-        // ];
+        self::$pageBreadcrumbs[] = [
+            'page' => '/'.self::$routePath,
+            'title' => 'List '.self::$pageTitle,
+        ];
     }
 
     public function index(Request $request)

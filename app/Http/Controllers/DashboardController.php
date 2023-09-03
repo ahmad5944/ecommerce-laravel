@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+
 class DashboardController extends Controller
 {
     public static $pageTitle = 'Dashboard';
@@ -13,6 +16,8 @@ class DashboardController extends Controller
 
     public function __construct()
     {
+        $this->middleware('permission:dashboard-list', ['only' => ['index']]);
+
         self::$pageBreadcrumbs[] = [
             'page' => '/' . self::$routePath,
             'title' => self::$pageTitle,
@@ -21,13 +26,10 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request){
         $pageBreadcrumbs = self::$pageBreadcrumbs;
 
         return view('dashboard', compact('pageBreadcrumbs'));
     }
 
-    public function login(){
-        return view('auth.login');
-    }
 }

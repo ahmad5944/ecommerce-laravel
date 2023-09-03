@@ -64,8 +64,6 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         try {
-            // audit trail buat yg method post
-
             $req = $request->all();
             $req['guard_name'] = 'web';
             // $req['created_by'] = Auth::user()->id;

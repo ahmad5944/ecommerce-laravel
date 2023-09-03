@@ -29,14 +29,25 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         if(Auth::attempt($request->only('email', 'password'))){
-            $request->session()->regenerate();
-     
+
             return redirect()->route('dashboard');
         }
-        return redirect('/login')->withErrors([
-            'username' => 'Password atau Username anda salah!',
+        return redirect()->route('login')->withErrors([
+            'username' => 'Password atau Username anda salah!'
         ]);
     }
+
+    // public function userPostLogin(Request $request)
+    // {
+    //     if(Auth::attempt($request->only('email', 'password'))){
+    //         $request->session()->regenerate();
+
+    //         return redirect()->route('front.product');
+    //     }
+    //     return redirect('/admin')->withErrors([
+    //         'username' => 'Password atau Username anda salah!',
+    //     ]);
+    // }
 
     protected function logout(Request $request)
     {
