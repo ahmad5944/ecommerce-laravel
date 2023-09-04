@@ -16,5 +16,4 @@ class FrontLoginController extends Controller
 
         return view('front.user.login', compact('datas'));
     }
-    
 }

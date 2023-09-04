@@ -3,7 +3,7 @@
 @section('content')
     <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-start">
         <div class="col-first">
-            <h1 class="text-dark">Edit profile</h1>
+            <h1 class="text-dark">Register</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     @foreach ($pageBreadcrumbs as $k => $item)
@@ -14,10 +14,8 @@
             </nav>
         </div>
     </div>
-    <form class="row tracking_form" action="{{ route('front.user.update', $data->id) }}" method="POST" role="form"
+    <form class="row tracking_form" action="{{ route('front.store') }}" method="POST" role="form"
         enctype="multipart/form-data">
-        {{ method_field('PATCH') }}
-
         @csrf
         <div class="col-md-12 form-group">
             @if ($errors->count() > 0)
@@ -33,7 +31,7 @@
         <div class="col-md-12 form-group">
             <label class="form-label">Nama Lengkap</label>
             <input type="text" class="form-control @error('name') is-invalid text-danger @enderror" name="name"
-                placeholder="Nama Lengkap" value="{{ $data->name }}">
+                placeholder="Nama Lengkap">
             @error('name')
                 <small class="text-danger"><b>{{ $message }}</b></small>
             @enderror
@@ -41,7 +39,7 @@
         <div class="col-md-12 form-group">
             <label class="form-label">Email</label>
             <input type="email" class="form-control @error('email') is-invalid text-danger @enderror" name="email"
-                placeholder="Email" value="{{ $data->email }}">
+                placeholder="Email">
             @error('email')
                 <small class="text-danger"><b>{{ $message }}</b></small>
             @enderror
@@ -49,7 +47,7 @@
         <div class="col-md-12 form-group">
             <label class="form-label">No HP</label>
             <input type="number" class="form-control @error('no_telp') is-invalid text-danger @enderror" name="no_telp"
-                placeholder="No HP" value="{{ $data->no_telp }}">
+                placeholder="No HP">
             @error('no_telp')
                 <small class="text-danger"><b>{{ $message }}</b></small>
             @enderror
@@ -58,7 +56,7 @@
             <label class="form-label">Foto Profile</label><br>
             <img class="mb-2" src="{{ '/storage/images/' . $data->image }}" alt="{{ $data->image }}" width="300">
             <input type="file" class="form-control @error('image') is-invalid text-danger @enderror" name="image"
-                placeholder="Nama Lengkap" value="{{ $data->image }}">
+                placeholder="Nama Lengkap">
             @error('image')
                 <small class="text-danger"><b>{{ $message }}</b></small>
             @enderror
@@ -67,7 +65,7 @@
             <label class="form-label">Password</label>
             <input type="password" class="form-control @error('password') is-invalid text-danger @enderror" name="password"
                 placeholder="***********">
-            <small class="text-danger">Jika tidak ingin mengganti password harap kosongkan data</small>
+            <input type="hidden" name="role">
         </div>
         <div class="col-md-12 form-group" style="margin-bottom: 100px;">
             <button type="submit" value="submit" class="primary-btn">Submit</button>

@@ -70,25 +70,17 @@
                         <div class="price">
                             <h6>RP. {{ number_format($data->price, 0, ',', '.') }}</h6>
                         </div>
-                        <div class="prd-bottom">
-
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">add to bag</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Wishlist</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">view more</p>
-                            </a>
-                        </div>
+                        @if(auth()->user() != null)
+                            <div class="">
+                                <form action="{{ route('front.add-to-cart', $data->id) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $data->id }}">
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                    <button type="submit" class="btn btn-sm" title="add to cart"><i
+                                            class="ti-bag"></i></button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

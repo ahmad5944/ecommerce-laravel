@@ -32,6 +32,64 @@ class FrontUserController extends Controller
         ];
     }
 
+    public function create(Request $request)
+    {
+        $data = new User();
+
+        $pageTitle = self::$pageTitle;
+        $pageBreadcrumbs = self::$pageBreadcrumbs;
+        $pageBreadcrumbs[] = [
+            'page' => '/' . self::$routePath . '/create',
+            'title' => 'Register',
+        ];
+
+        return view(self::$folderPath . '.register', compact('data', 'pageTitle', 'pageBreadcrumbs'));
+    }
+
+    public function store(Request $request)
+    {
+        $req = $request->all();
+
+        $rules = [
+            'name'              => 'required',
+            'no_telp'           => 'required|numeric',
+            'email'             => 'required|email|unique:users,email',
+            'password'          => 'required|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'
+        ];
+
+        $custom_messages = [
+            'name.required'                 => 'Nama tidak boleh kosong !',
+            'no_telp.required'              => 'No Telp tidak boleh kosong !',
+            'no_telp.numeric'               => 'No Telp harus berisikan angka !',
+            'email.required'                => 'Email tidak boleh kosong !',
+            'email.email'                   => 'Format email salah !',
+            'email.unique'                  => 'Email sudah terdaftar !',
+            'password.required'             => 'Password tidak boleh kosong !',
+            'password.regex'                => 'Password harus mengandung karakter, angka dan huruf besar & kecil !',
+        ];
+
+        $this->validate($request, $rules, $custom_messages);
+
+        if ($request->hasFile('image')) {
+            $path = 'public/images/users';
+
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $request->file('image')->storeAs($path, $image_name);
+
+            $req['image'] = '/users/' . $image_name;
+        }
+        $req['role'] = 'user';
+
+        $req['password'] = Hash::make($req['password']);
+        $user = User::create($req);
+        $user->assignRole($req['role']);
+
+        Alert::success('Berhasil', 'Data Berhasil diTambahkan');
+        return redirect()->route('front.product');
+
+    }
+
     public function edit(Request  $request, $id)
     {
         $roles = Role::all();
@@ -47,9 +105,10 @@ class FrontUserController extends Controller
         return view(self::$folderPath . '.edit', compact('data', 'roles', 'pageTitle', 'pageBreadcrumbs'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         $req = $request->all();
+        $user = User::find($id);
 
         $rules = [
             'name'              => 'required',
@@ -67,7 +126,6 @@ class FrontUserController extends Controller
             'password.regex'                => 'Password harus mengandung karakter, angka dan huruf besar & kecil !',
         ];
 
-        $roles = Role::pluck('id', 'name')->all();
         $this->validate($request, $rules, $custom_messages);
 
         if (!empty($req['password'])) {
@@ -90,7 +148,7 @@ class FrontUserController extends Controller
         } else {
             unset($req['image']);
         }
-        dd($req);
+        
         $user->update($req);
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
 

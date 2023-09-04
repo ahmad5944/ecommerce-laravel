@@ -11,7 +11,6 @@
   padding: 0; }
 
 .section_gap {
-  margin-top: 100px;
   padding: 50px 0; }
   @media (max-width: 991px) {
     .section_gap {
@@ -1357,6 +1356,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0; }
 
 .features-inner {
+  margin-bottom: 50px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 40px 0; }
 
@@ -4714,7 +4714,7 @@ label {
 /* Login form Area css
 ============================================================================================ */
 .login_box_area {
-  margin-bottom: 150px;
+  margin: 200px 0 150px 0;
 }
 .login_box_area .login_box_img {
   margin-right: -30px;

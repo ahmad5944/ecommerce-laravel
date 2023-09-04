@@ -5,8 +5,10 @@ use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\Front\Auth\FrontAuthController;
 use App\Http\Controllers\Front\FrontProductController;
+use App\Http\Controllers\Front\FrontOrderController;
 use App\Http\Controllers\Front\FrontLoginController;
 use App\Http\Controllers\Front\FrontUserController;
+use App\Http\Controllers\Front\FrontCartController;
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DashboardController;
@@ -29,7 +31,10 @@ use App\Http\Controllers\RoleController;
 Route::get('/', [FrontProductController::class, 'index'])->name('front.product');
 Route::get('/user-login', [FrontLoginController::class, 'index'])->name('front.login');
 Route::post('user-postLogin', [FrontAuthController::class, 'userPostLogin'])->name('front.postLogin');
-Route::get('/user-register', [FrontLoginController::class, 'index'])->name('front.register');
+Route::get('/user-register', [FrontUserController::class, 'create'])->name('front.register');
+Route::post('/user-register/store', [FrontUserController::class, 'store'])->name('front.store');
+
+Route::get('/front-logout', [FrontAuthController::class, 'logout'])->name('front.logout');
 
 Route::get('/admin', [AuthController::class, 'login'])->name('login');
 Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postLogin');
@@ -45,6 +50,18 @@ Route::group(['middleware' => 'auth'], function () {
     
     // Frontend
     Route::get('/produk', [FrontProductController::class, 'index'])->name('front.index');
+
+    // user profile
     Route::get('/front-user/{id}', [FrontUserController::class, 'edit'])->name('front.user.edit');
     Route::patch('/front-user/update/{id}', [FrontUserController::class, 'update'])->name('front.user.update');
+    Route::post('/front-user/store', [FrontUserController::class, 'store'])->name('front.user.store');
+
+    // cart
+    Route::get('/front-cart/{id}', [FrontCartController::class, 'edit'])->name('front.cart');
+    Route::post('/front-add-to-cart/{id}', [FrontCartController::class, 'addToCart'])->name('front.add-to-cart');
+    Route::get('/front-remove-cart/{id}', [FrontCartController::class, 'removeCart'])->name('front.remove-cart');
+    
+    // order
+    Route::get('/front-order', [FrontOrderController::class, 'index'])->name('front.order');
+    Route::get('/front-add-order', [FrontOrderController::class, 'order'])->name('front.order.store');
 });
