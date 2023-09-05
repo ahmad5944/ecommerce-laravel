@@ -37,3 +37,14 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 - **Run In Terminal "php artisan optimize**
 - **Run In Terminal "php artisan migrate"**
 - **Run In Terminal "php artisan db:seed UserSeeder"**
+- **Run In Terminal "php artisan serve"**
+
+## Laravel Package
+- **composer require realrashid/sweet-alert"**
+- **composer require laravelcollective/html"**
+- **composer require maatwebsite/excel"**
+- **composer require laravel/fortify"**
+- **composer require laravel/ui"**
+
+
+
