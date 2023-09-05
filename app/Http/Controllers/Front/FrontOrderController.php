@@ -10,6 +10,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use RealRashid\SweetAlert\Facades\Alert;
+
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExcelExport;
+
 class FrontOrderController extends Controller
 {
     public static $pageTitle = 'Order';
@@ -76,14 +80,32 @@ class FrontOrderController extends Controller
         }
     }
 
-    public function removeCart($id){
-        $cart = Cart::find($id);
+    public function cancelOrder($id){
+        $cart = Order::find($id);
 
         $cart->delete();
 
-        Alert::success('Berhasil', 'Data Berhasil diHapus');
+        Alert::success('Berhasil', 'Order Berhasil diCancel');
         return redirect()->back();
     }
-    
 
+    public function excel(Request $request, $id)
+    {
+        $req = $request->all();
+        $userId = auth()->user()->id;
+        $data  = Order::with('product', 'user')->where('user_id', $userId)->get();
+
+        $folder = 'report.form';
+        $sendToFolder = compact('data');
+
+        if($req['report'] == 'excel'){
+            $export = new ExcelExport($folder, $sendToFolder);
+    
+            return Excel::download($export,'order user '.auth()->user()->name.'.xlsx');
+        }else{
+            $export = new ExcelExport($folder, $sendToFolder);
+
+            return Excel::download($export,'order user '.auth()->user()->name.'.csv', \Maatwebsite\Excel\Excel::CSV);
+        }
+    }
 }

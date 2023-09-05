@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('no_telp')->nullable();
             $table->string('status')->nullable();
             $table->string('role')->nullable();
+            $table->string('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

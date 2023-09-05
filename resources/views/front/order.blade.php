@@ -1,9 +1,25 @@
 @extends('layouts.front.template')
 
 @section('content')
-    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-start">
+    <div class="breadcrumb-banner align-items-center">
         <div class="col-first">
-            <h1 class="text-dark">Order</h1>
+            <div class="row d-flex justify-content-between">
+                <h1 class="text-dark">Order</h1>
+                <div class="d-flex align-items-center">
+                    <form action="{{ route('front.report-excel', auth()->user()->id) }}" target="_blank">
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label" for="report">Export</label>
+                            <select class="form-control col-8" name="report" id="report" onchange="this.form.submit();">
+                                <option value="" hidden>Pilih export</option>
+                                <option value="excel">Excel</option>
+                                <option value="csv">Csv</option>
+                            </select>
+                        </div>
+                    </form>
+                    {{-- <a href="{{ route('front.report-excel', auth()->user()->id) }}" target="_blank" type="button"
+                        class="btn btn-success btn-sm"><i data-feather='download-cloud' class="font-small-2"></i></a> --}}
+                </div>
+            </div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     @foreach ($pageBreadcrumbs as $k => $item)
@@ -34,10 +50,10 @@
                             @foreach ($data as $value)
                                 <tr>
                                     <td>
-                                        <h5>{{ $value['no_invoice']}}</h5>
+                                        <h5>{{ $value['no_invoice'] }}</h5>
                                     </td>
                                     <td>
-                                        <h5>{{ $value['product']['name']}}</h5>
+                                        <h5>{{ $value['product']['name'] }}</h5>
                                     </td>
                                     <td>
                                         <div class="product_count">
@@ -55,7 +71,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="{{ route('front.remove-cart', $value->id) }}" type="button" onclick="return confirm('Anda yaki Ingin menghapus data?')"
+                                        <a href="{{ route('front.cancel-order', $value->id) }}" type="button"
+                                            onclick="return confirm('Anda yakin ingin cancel orderan?')"
                                             class="btn btn-danger btn-sm btn-delete">Cancel Order</a>
                                     </td>
                                 </tr>

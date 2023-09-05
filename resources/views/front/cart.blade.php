@@ -79,7 +79,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('front.remove-cart', $value->id) }}" type="button"
-                                            onclick="return confirm('Anda yaki Ingin menghapus data?')"
+                                            onclick="return confirm('Anda yakin Ingin menghapus data?')"
                                             class="btn btn-danger btn-sm btn-delete"><i class="fa fa-times fa-2"></i></a>
                                     </td>
                                 </tr>

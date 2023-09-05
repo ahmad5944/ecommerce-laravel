@@ -40,8 +40,11 @@ Route::get('/admin', [AuthController::class, 'login'])->name('login');
 Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/redirect', [DashboardController::class, 'index'])->middleware('auth', 'verified');
+
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth', 'verified');
     Route::resource('permission', PermissionController::class);
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);
@@ -64,4 +67,6 @@ Route::group(['middleware' => 'auth'], function () {
     // order
     Route::get('/front-order', [FrontOrderController::class, 'index'])->name('front.order');
     Route::get('/front-add-order', [FrontOrderController::class, 'order'])->name('front.order.store');
+    Route::get('/front-cancel-order/{id}', [FrontOrderController::class, 'cancelOrder'])->name('front.cancel-order');
+    Route::get('/front-report-excel/{id}', [FrontOrderController::class, 'excel'])->name('front.report-excel');
 });

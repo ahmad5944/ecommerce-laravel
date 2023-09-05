@@ -16,7 +16,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:dashboard-list', ['only' => ['index']]);
+        // $this->middleware('permission:dashboard-list', ['only' => ['index']]);
 
         self::$pageBreadcrumbs[] = [
             'page' => '/' . self::$routePath,
