@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Product;
+use App\Models\Order;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -23,13 +26,16 @@ class DashboardController extends Controller
             'title' => self::$pageTitle,
         ];
 
-        $this->middleware('auth');
     }
 
     public function index(Request $request){
         $pageBreadcrumbs = self::$pageBreadcrumbs;
 
-        return view('dashboard', compact('pageBreadcrumbs'));
+        $user = User::where('role', 'user')->count();
+        $product = Product::count();
+        $order = Order::count();
+
+        return view('dashboard', compact('pageBreadcrumbs', 'user', 'product', 'order'));
     }
 
 }

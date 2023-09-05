@@ -18,11 +18,10 @@
                 <div class="col-lg-6">
                     <div class="login_form_inner">
                         <h3>Log in to enter</h3>
-                        <form class="row login_form" action="{{ route('front.postLogin') }}" method="POST" id="contactForm"
-                            novalidate="novalidate">
+                        <form class="row login_form" action="{{ route('front.postLogin') }}" method="POST" id="contactForm">
                             @csrf
                             @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show p-2">
+                                <div class="col-md-12 alert alert-danger alert-dismissible fade show p-2">
                                     <strong>Error!</strong> {{ $errors->first() }}
                                 </div>
                             @endif

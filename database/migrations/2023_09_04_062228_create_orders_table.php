@@ -23,6 +23,8 @@ class CreateOrdersTable extends Migration
             $table->string('no_invoice')->nullable();
 
             $table->timestamps();
+
+            $table->index(['id', 'created_at']);
         });
     }
 

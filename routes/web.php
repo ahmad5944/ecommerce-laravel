@@ -15,7 +15,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CutiController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
@@ -40,16 +40,18 @@ Route::get('/admin', [AuthController::class, 'login'])->name('login');
 Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/redirect', [DashboardController::class, 'index'])->middleware('auth', 'verified');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth', 'verified');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('verified');
     Route::resource('permission', PermissionController::class);
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);
     Route::resource('cuti', CutiController::class);
     Route::resource('role', RoleController::class);
+    Route::resource('order', OrderController::class);
+    Route::get('/order/{inv}', [OrderController::class, 'show'])->name('order.show');
+
     
     // Frontend
     Route::get('/produk', [FrontProductController::class, 'index'])->name('front.index');

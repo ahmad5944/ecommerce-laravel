@@ -27,7 +27,7 @@ class FrontAuthController extends Controller
 
             return redirect()->route('front.product');
         }
-        return redirect('/admin')->withErrors([
+        return redirect('/user-login')->withErrors([
             'username' => 'Password atau Username anda salah!',
         ]);
     }
