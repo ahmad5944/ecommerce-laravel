@@ -6,8 +6,6 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-between">
                     <h5 class="card-title">{{ 'List ' . $pageTitle }}</h5>
-                    <a href="{{ route('product.create') }}"
-                        class="btn btn-primary btn-sm float-right font-weight-bolder mr-1"><i class="ni ni-fat-add"></i> Tambah Data</a>
                 </div>
             </div><br>
             <div class="card">
