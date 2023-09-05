@@ -29,14 +29,14 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 
 ## Mad Mart Information
-- **Laravel Version 8.0 (https://laravel.com/docs/8.x)**
-- **Php ^7.3 (https://www.php.net/docs.php)**
+- **[Laravel Version 8.0](https://laravel.com/docs/8.x)**
+- **[Php ^7.3](https://www.php.net/docs.php)**
 - **Mysql**
-- **Jquery 3.7.0 (https://jquery.com/)**
-- **Datatable (https://datatables.net/)**
-- **Bootstrap 5 (https://getbootstrap.com/docs/5.0/getting-started/introduction/)**
-- **Argon Template (https://www.creative-tim.com/product/argon-dashboard)**
-- **Karma Template (https://themewagon.com/themes/free-reponsive-bootstrap-4-html5-ecommerce-website-template-karma/)**
+- **[Jquery 3.7.0](https://jquery.com/)**
+- **[Datatable](https://datatables.net/)**
+- **[Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)**
+- **[Argon Template](https://www.creative-tim.com/product/argon-dashboard)**
+- **[Karma Template](https://themewagon.com/themes/free-reponsive-bootstrap-4-html5-ecommerce-website-template-karma/)**
 
 ### Step by step
 
