@@ -54,5 +54,6 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **composer require laravel/ui**
 
 ## Note
+- **Database Documentation In public/Mad Mart Database Documentation.pdf**
 - **Image In public/assets/product And public/assets/users**
 - **Database In database/test.sql**
