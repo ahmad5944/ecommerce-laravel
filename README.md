@@ -54,3 +54,4 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **composer require laravel/ui"**
 
 ## Image In public/assets/product And public/assets/users
+## Database In database/test.sql
