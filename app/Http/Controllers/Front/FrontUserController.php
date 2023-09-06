@@ -133,8 +133,7 @@ class FrontUserController extends Controller
         } else {
             unset($req['password']);
         }
-
-        $req['role_id'] = 'user';
+        // $req['role_id'] = 'user';
         if (!empty($req['image'])) {
             if ($request->hasFile('image')) {
                 $path = 'public/images/users';
@@ -150,7 +149,7 @@ class FrontUserController extends Controller
         }
         
         $user->update($req);
-        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+        // DB::table('model_has_roles')->where('model_id', $user->id)->delete();
 
         Alert::success('Berhasil', 'User Berhasil diUpdate');
         return redirect()->route('front.index');

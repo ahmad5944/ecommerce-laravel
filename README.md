@@ -32,8 +32,8 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **[Karma Template](https://themewagon.com/themes/free-reponsive-bootstrap-4-html5-ecommerce-website-template-karma/)**
 
 ### Step by step
-
-- **Run In Terminal "Composer Install"**
+- **Run In Terminal "composer require laravel/fortify"**
+- **Run In Terminal "composer Install"**
 - **Change Database Name In .env "DB_DATABASE=db_name"**
 - **Run In Terminal "php artisan key:generate"**
 - **Run In Terminal "php artisan optimize**
@@ -43,15 +43,12 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **Run In Terminal "php artisan db:seed ModelHasRoleSeeder"**
 - **Run In Terminal "php artisan db:seed RoleHasPermissionSeeder"**
 - **Run In Terminal "php artisan db:seed UserSeeder"**
-
+- **Run In Terminal "php artisan storage:link"**
 - **Run In Terminal "php artisan serve"**
 
-## Laravel Package
+## Laravel Package You Have Install
 - **composer require realrashid/sweet-alert"**
 - **composer require laravelcollective/html"**
 - **composer require maatwebsite/excel"**
 - **composer require laravel/fortify"**
 - **composer require laravel/ui"**
-
-
-
