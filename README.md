@@ -34,7 +34,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ### Step by step
 - **Run In Terminal "composer require laravel/fortify"**
 - **Run In Terminal "composer Install"**
-- **Change Database Name In .env "DB_DATABASE=db_name"**
+- **Change Database Name In .env "DB_DATABASE=db_name**
 - **Run In Terminal "php artisan key:generate"**
 - **Run In Terminal "php artisan optimize**
 - **Run In Terminal "php artisan migrate"**
@@ -47,11 +47,12 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **Run In Terminal "php artisan serve"**
 
 ## Laravel Package You Have Install
-- **composer require realrashid/sweet-alert"**
-- **composer require laravelcollective/html"**
-- **composer require maatwebsite/excel"**
-- **composer require laravel/fortify"**
-- **composer require laravel/ui"**
+- **composer require realrashid/sweet-alert**
+- **composer require laravelcollective/html**
+- **composer require maatwebsite/excel**
+- **composer require laravel/fortify**
+- **composer require laravel/ui**
 
-## Image In public/assets/product And public/assets/users
-## Database In database/test.sql
+## Note
+- **Image In public/assets/product And public/assets/users**
+- **Database In database/test.sql**
