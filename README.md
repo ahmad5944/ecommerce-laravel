@@ -38,7 +38,12 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **Run In Terminal "php artisan key:generate"**
 - **Run In Terminal "php artisan optimize**
 - **Run In Terminal "php artisan migrate"**
+- **Run In Terminal "php artisan db:seed PermissionSeeder"**
+- **Run In Terminal "php artisan db:seed RoleSeeder"**
+- **Run In Terminal "php artisan db:seed ModelHasRoleSeeder"**
+- **Run In Terminal "php artisan db:seed RoleHasPermissionSeeder"**
 - **Run In Terminal "php artisan db:seed UserSeeder"**
+
 - **Run In Terminal "php artisan serve"**
 
 ## Laravel Package

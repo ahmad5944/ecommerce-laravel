@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Front\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
-use App\Helpers\AuditTrail;
-use Illuminate\Http\Request\hasRole;
 
 class FrontAuthController extends Controller
 {

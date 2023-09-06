@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Permission;
 
-use Illuminate\Support\Facades\Auth;
-use App\Helpers\AuditTrail;
-use App\Helpers\LogActivity;
-
 use RealRashid\SweetAlert\Facades\Alert;
 class PermissionController extends Controller
 {
@@ -23,16 +19,16 @@ class PermissionController extends Controller
 
     function __construct()
     {
-        // $this->middleware('permission:user-list', ['only' => ['index']]);
-        // // $this->middleware('permission:permission-create', ['only' => ['create','store']]);
-        // $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-        // $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-        // $this->middleware('permission:user-show', ['only' => ['show']]);
+        $this->middleware('permission:user-list', ['only' => ['index']]);
+        $this->middleware('permission:permission-create', ['only' => ['create','store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-show', ['only' => ['show']]);
 
-        // self::$pageBreadcrumbs[] = [
-        //     'page' => '/'.self::$routePath,
-        //     'title' => 'List '.self::$pageTitle,
-        // ];
+        self::$pageBreadcrumbs[] = [
+            'page' => '/'.self::$routePath,
+            'title' => 'List '.self::$pageTitle,
+        ];
     }
 
     public function index(Request $request)
@@ -111,10 +107,7 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         try {
-            // audit trail buat yg method post
-
             $req = $request->all();
-            // $req['updated_by'] = Auth::user()->id;
             $permission->update($req);
 
             Alert::success('Berhasil', self::$response.' Berhasil diUpdate');
@@ -129,7 +122,6 @@ class PermissionController extends Controller
     {
         $data = Permission::find($id)->delete();
         
-        // audit trail buat yg method post
         return redirect()->route(self::$routePath.'.index')
             ->with('success', self::$response.' Berhasil dihapus');
     }

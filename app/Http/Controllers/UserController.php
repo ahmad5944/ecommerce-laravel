@@ -21,11 +21,11 @@ class UserController extends Controller
     function __construct()
     {
         // $this->middleware(['auth', 'verified']);
-        // $this->middleware('permission:user-list', ['only' => ['index']]);
-        // $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        // $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
-        // $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-        // $this->middleware('permission:user-show', ['only' => ['show']]);
+        $this->middleware('permission:user-list', ['only' => ['index']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-show', ['only' => ['show']]);
 
         self::$pageBreadcrumbs[] = [
             'page' => '/' . self::$routePath,

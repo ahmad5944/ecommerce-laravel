@@ -18,6 +18,12 @@ class OrderController extends Controller
 
     function __construct()
     {
+        $this->middleware('permission:order-list', ['only' => ['index']]);
+        $this->middleware('permission:order-create', ['only' => ['create','store']]);
+        $this->middleware('permission:order-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:order-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:order-show', ['only' => ['show']]);
+
         self::$pageBreadcrumbs[] = [
             'page' => '/' . self::$routePath,
             'title' => 'List ' . self::$pageTitle,

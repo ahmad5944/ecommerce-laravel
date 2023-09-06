@@ -22,11 +22,11 @@ class RoleController extends Controller
 
     function __construct()
     {
-        // $this->middleware('permission:role-list', ['only' => ['index']]);
-        // $this->middleware('permission:role-create', ['only' => ['create','store']]);
-        // $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-        // $this->middleware('permission:role-delete', ['only' => ['destroy']]);
-        // $this->middleware('permission:role-show', ['only' => ['show']]);
+        $this->middleware('permission:role-list', ['only' => ['index']]);
+        $this->middleware('permission:role-create', ['only' => ['create','store']]);
+        $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:role-show', ['only' => ['show']]);
 
         self::$pageBreadcrumbs[] = [
             'page' => '/'.self::$routePath,
@@ -63,8 +63,6 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        // audit trail buat yg method post
-
         request()->validate([
             // 'name' => 'required|unique:role,name',
             'permission' => 'required'
@@ -85,7 +83,6 @@ class RoleController extends Controller
     public function show(Request $request, $id)
     {
     }
-
     public function edit(Request $request, $id)
     {
         $role = Role::find($id);
@@ -109,7 +106,6 @@ class RoleController extends Controller
 
     public function update(Request $request, Role $role)
     {
-        // audit trail buat yg method post
         $req = $request->all();
 
         $role->update([

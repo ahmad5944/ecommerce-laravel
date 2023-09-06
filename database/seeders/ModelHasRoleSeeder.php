@@ -14,11 +14,63 @@ class ModelHasRoleSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::create([
-            'id' => '1',
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('password')
-        ]);
+        $data = [
+            [
+                'role_id' => 1,
+                'model_type' => 'App\Models\User',
+                'model_id' => 1,
+            ],
+            [
+                'role_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 2,
+            ],
+            [
+                'role_id' => 1,
+                'model_type' => 'App\Models\User',
+                'model_id' => 10,
+            ],
+            [
+                'role_id' => 1,
+                'model_type' => 'App\Models\User',
+                'model_id' => 12,
+            ],
+            [
+                'role_id' => 1,
+                'model_type' => 'App\Models\User',
+                'model_id' => 14,
+            ],
+            [
+                'role_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 7,
+            ],
+            [
+                'role_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 8,
+            ],
+            [
+                'role_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 9,
+            ],
+            [
+                'role_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 10,
+            ],
+            [
+                'role_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 11,
+            ],
+            [
+                'role_id' => 2,
+                'model_type' => 'App\Models\User',
+                'model_id' => 12,
+            ],
+        ];
+        ModelHasRole::insert($data);
     }
 }

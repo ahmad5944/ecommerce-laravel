@@ -32,68 +32,82 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item {{ $route == 'product.index' ? 'active' : '' }}">
-                <a class="nav-link " href="{{ route('product.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-box-2 text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Product</span>
-                </a>
-            </li>
-            <li class="nav-item {{ $route == 'order.index' ? 'active' : '' }}">
-                <a class="nav-link " href="{{ route('order.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-cart text-success text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Order</span>
-                </a>
-            </li>
+            @can('product-list')
+                <li class="nav-item {{ $route == 'product.index' ? 'active' : '' }}">
+                    <a class="nav-link " href="{{ route('product.index') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-box-2 text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Product</span>
+                    </a>
+                </li>
+            @endcan
+            @can('order-list')
+                <li class="nav-item {{ $route == 'order.index' ? 'active' : '' }}">
+                    <a class="nav-link " href="{{ route('order.index') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-cart text-success text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Order</span>
+                    </a>
+                </li>
+            @endcan
             {{-- <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">User Management</h6>
             </li> --}}
             <li class="nav-item">
-                @if ($route == 'user.index' || $route == 'role.index' || $route == 'permission.index')
-                    <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link" aria-controls="pagesExamples"
-                        role="button" aria-expanded="true">
-                        <div
-                            class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
-                            <i class="ni ni-circle-08 text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">User Management</span>
-                    </a>
-                    <div class="collapse show" id="pagesExamples" style="">
-                    @else
-                        <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link collapsed"
-                            aria-controls="pagesExamples" role="button" aria-expanded="false">
-                            <div
-                                class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
-                                <i class="ni ni-circle-08 text-warning text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">User Management</span>
-                        </a>
-                        <div class="collapse" id="pagesExamples" style="">
+                @if ($route != 'user.index' && $route != 'role.index' && $route != 'permission.index')
+                    @can('user-list')
+                        @if ($route == 'user.index' || $route == 'role.index' || $route == 'permission.index')
+                            <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link"
+                                aria-controls="pagesExamples" role="button" aria-expanded="true">
+                                <div
+                                    class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                                    <i class="ni ni-circle-08 text-warning text-sm opacity-10"></i>
+                                </div>
+                                <span class="nav-link-text ms-1">User Management</span>
+                            </a>
+                            <div class="collapse show" id="pagesExamples" style="">
+                            @else
+                                <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link collapsed"
+                                    aria-controls="pagesExamples" role="button" aria-expanded="false">
+                                    <div
+                                        class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                                        <i class="ni ni-circle-08 text-warning text-sm opacity-10"></i>
+                                    </div>
+                                    <span class="nav-link-text ms-1">User Management</span>
+                                </a>
+                                <div class="collapse" id="pagesExamples" style="">
+                        @endif
+                    @endcan
                 @endif
                 <ul class="nav ms-4">
-                    <li class="nav-item {{ $route == 'user.index' ? 'active' : '' }}">
-                        <a class="nav-link " href="{{ route('user.index') }}">
-                            <span class="sidenav-mini-icon"> P </span>
-                            <span class="sidenav-normal"> Profile </span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ $route == 'role.index' ? 'active' : '' }}">
-                        <a class="nav-link " href="{{ route('role.index') }}">
-                            <span class="sidenav-mini-icon"> R </span>
-                            <span class="sidenav-normal"> Role </span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ $route == 'permission.index' ? 'active' : '' }}">
-                        <a class="nav-link " href="{{ route('permission.index') }}">
-                            <span class="sidenav-mini-icon"> P </span>
-                            <span class="sidenav-normal"> Permission </span>
-                        </a>
-                    </li>
+                    @can('user-list')
+                        <li class="nav-item {{ $route == 'user.index' ? 'active' : '' }}">
+                            <a class="nav-link " href="{{ route('user.index') }}">
+                                <span class="sidenav-mini-icon"> P </span>
+                                <span class="sidenav-normal"> Profile </span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('role-list')
+                        <li class="nav-item {{ $route == 'role.index' ? 'active' : '' }}">
+                            <a class="nav-link " href="{{ route('role.index') }}">
+                                <span class="sidenav-mini-icon"> R </span>
+                                <span class="sidenav-normal"> Role </span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('permission-list')
+                        <li class="nav-item {{ $route == 'permission.index' ? 'active' : '' }}">
+                            <a class="nav-link " href="{{ route('permission.index') }}">
+                                <span class="sidenav-mini-icon"> P </span>
+                                <span class="sidenav-normal"> Permission </span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
     </div>
     </li>
