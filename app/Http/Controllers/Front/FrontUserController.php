@@ -100,7 +100,7 @@ class FrontUserController extends Controller
             $message->subject('Email Verification Mail');
         });
 
-        Alert::success('Berhasil', 'Data Berhasil diTambahkan, Cek Email!');
+        Alert::success('Berhasil', 'User Berhasil Di buat, Cek Email!');
         return redirect()->route('front.product');
 
     }
