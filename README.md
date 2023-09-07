@@ -57,3 +57,4 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **Database Documentation In public/assets/Mad Mart Database Documentation.pdf**
 - **Image In public/assets/product And public/assets/users**
 - **Database In database/test.sql**
+- **Cek email after register**
