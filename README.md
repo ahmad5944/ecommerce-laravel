@@ -33,7 +33,10 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 ### Step by step
 - **Run In Terminal "composer require laravel/fortify"**
-- **Run In Terminal "composer Install"**
+```bash
+    composer require laravel/fortify
+    composer Install
+```
 - **Change Database Name In .env "DB_DATABASE=db_name**
 - **Add In .env**
 ```bash
@@ -46,26 +49,19 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
   MAIL_FROM_ADDRESS="ahmaddaffa1899@gmail.com"
   MAIL_FROM_NAME="Mad Mart"
 ```
-- MAIL_MAILER=smtp
-- MAIL_HOST=smtp.gmail.com
-- MAIL_PORT=587
-- MAIL_USERNAME=ahmaddaffa1899@gmail.com
-- MAIL_PASSWORD=bzmylalhmwhdsjaq
-- MAIL_ENCRYPTION=tls
-- MAIL_FROM_ADDRESS="ahmaddaffa1899@gmail.com"
-- MAIL_FROM_NAME="Mad Mart"
-
-- **Run In Terminal "php artisan key:generate"**
-- **Run In Terminal "php artisan optimize**
-- **Run In Terminal "php artisan migrate"**
-- **Run In Terminal "php artisan db:seed PermissionSeeder"**
-- **Run In Terminal "php artisan db:seed RoleSeeder"**
-- **Run In Terminal "php artisan db:seed ModelHasRoleSeeder"**
-- **Run In Terminal "php artisan db:seed RoleHasPermissionSeeder"**
-- **Run In Terminal "php artisan db:seed UserSeeder"**
-- **Run In Terminal "php artisan storage:link"**
-- **Run In Terminal "php artisan serve"**
-
+- **Run In Terminal**
+```bash
+    php artisan key:generate
+    php artisan optimize
+    php artisan migrate
+    php artisan db:seed PermissionSeeder
+    php artisan db:seed RoleSeeder
+    php artisan db:seed ModelHasRoleSeeder
+    php artisan db:seed RoleHasPermissionSeeder
+    php artisan db:seed UserSeeder
+    php artisan storage:link
+    php artisan serve
+```
 ## Laravel Package You Have Install
 - **composer require realrashid/sweet-alert**
 - **composer require laravelcollective/html**
