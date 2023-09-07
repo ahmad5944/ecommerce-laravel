@@ -36,6 +36,16 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **Run In Terminal "composer Install"**
 - **Change Database Name In .env "DB_DATABASE=db_name**
 - **Add In .env**
+```bash
+  MAIL_MAILER=smtp
+  MAIL_HOST=smtp.gmail.com
+  MAIL_PORT=587
+  MAIL_USERNAME=ahmaddaffa1899@gmail.com
+  MAIL_PASSWORD=bzmylalhmwhdsjaq
+  MAIL_ENCRYPTION=tls
+  MAIL_FROM_ADDRESS="ahmaddaffa1899@gmail.com"
+  MAIL_FROM_NAME="Mad Mart"
+```
 - MAIL_MAILER=smtp
 - MAIL_HOST=smtp.gmail.com
 - MAIL_PORT=587
