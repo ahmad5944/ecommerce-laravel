@@ -32,7 +32,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **[Karma Template](https://themewagon.com/themes/free-reponsive-bootstrap-4-html5-ecommerce-website-template-karma/)**
 
 ### Step by step
-- **Run In Terminal "composer require laravel/fortify"**
+- **Run In Terminal**
 ```bash
     composer require laravel/fortify
     composer Install
@@ -73,4 +73,5 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **Database Documentation In public/assets/Mad Mart Database Documentation.pdf**
 - **Image In public/assets/product And public/assets/users**
 - **Database In database/test.sql**
-- **Cek email after register**
+- **Check email after register**
+- **If you find an error when **php artisan optimize** just ignore it**
